@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>ayx · 信息卡片介绍页</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 深色头图 (hero) */
+        .hero {
+            background: linear-gradient(145deg, #0b1120 0%, #1a2639 100%);
+            padding: 4.5rem 1.5rem 4rem;
+            text-align: center;
+            color: #e8edf5;
+            border-bottom: 4px solid #3b82f6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, #f5f7fb);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #93c5fd, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #9ca3b8;
+            border-top: 1px solid #2d3a54;
+            padding-top: 1rem;
+        }
+
+        /* 主内容区域 */
+        .container {
+            max-width: 1100px;
+            margin: -2rem auto 3rem;
+            padding: 0 1.25rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.03);
+            padding: 1.75rem 1.5rem 2rem;
+            transition: transform 0.2s ease, box-shadow 0.25s;
+            border: 1px solid #edf2f7;
+            backdrop-filter: blur(2px);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(59,130,246,0.08), 0 4px 12px rgba(0,0,0,0.06);
+            border-color: #bfdbfe;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.7rem;
+            display: inline-block;
+            background: #eef2ff;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 14px;
+            color: #3b82f6;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #374151;
+            margin-top: 0.25rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.6rem;
+        }
+
+        .card ul li {
+            font-size: 0.92rem;
+            padding: 0.2rem 0;
+            color: #4b5563;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .card ul li::before {
+            content: "·";
+            color: #3b82f6;
+            font-weight: bold;
+            margin-right: 0.4rem;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: #1d4ed8;
+            border-bottom-color: #1d4ed8;
+        }
+
+        /* 自然链接段落区域 */
+        .link-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.75rem;
+            margin: 1rem 0 2.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+            border: 1px solid #eef2f6;
+        }
+
+        .link-section p {
+            font-size: 1rem;
+            margin-bottom: 0.9rem;
+            color: #1f2937;
+        }
+
+        .link-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-tag {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #1e40af;
+            margin: 0 0.15rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.75rem 1.75rem 2rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+            border: 1px solid #eef2f6;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-item {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 0.98rem;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #475569;
+            margin-top: 0.15rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #e2e8f0;
+            margin: 1.8rem 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b7280;
+            padding: 1rem 0 2.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.15rem 0.75rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 0.3rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .sub {
+                font-size: 0.95rem;
+            }
+            .card {
+                padding: 1.25rem;
+            }
+            .container {
+                padding: 0 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>ayx · 信息卡片</h1>
+        <div class="sub">再次访问 · 收藏 · 持续关注<br>一个记录与整理的轻介绍页</div>
+    </header>
+
+    <div class="container">
+
+        <!-- 主视觉 / 用途卡片 -->
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📌</div>
+                <h3>再次访问的起点</h3>
+                <p>如果你曾留意过这个站点，不妨把这里当作一个安静的锚点。每次回来，都能看到结构清晰的摘要，不必从头翻阅。</p>
+                <ul>
+                    <li>入口位置固定</li>
+                    <li>内容定期梳理</li>
+                    <li>适合收藏至书签</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🗂️</div>
+                <h3>用途卡片</h3>
+                <p>围绕 <a href="https://home-ssl-ayx.com">ayx</a> 所涉及的场景，这里整理了几类常见用途，方便新老朋友快速了解。</p>
+                <ul>
+                    <li>信息参考与回溯</li>
+                    <li>功能索引与提醒</li>
+                    <li>轻量级介绍页</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3>适合人群</h3>
+                <p>无论你是初次接触，还是希望保持长期关注，下面几类读者都能从中找到适合自己的节奏。</p>
+                <ul>
+                    <li>习惯整理书签的用户</li>
+                    <li>需要快速回顾背景的访客</li>
+                    <li>想了解站点核心方向的人</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 + 收藏角度 -->
+        <div class="link-section">
+            <p>如果你是通过收藏夹再次回到这里，可能会发现页面布局和卡片内容都已经更新过——这正是持续维护的意义。站点 <a href="https://home-ssl-ayx.com">ayx</a> 并不追求频繁变动，但每次调整都会让信息更清晰一些。你可以在浏览器里为这个地址添加书签，方便之后回来查看摘要与卡片。</p>
+
+            <p>在实际使用中，很多人会把 <a href="https://home-ssl-ayx.com">ayx</a> 作为一个简单的参考点：不需要登录，不需要记住复杂路径，打开即用。卡片式的结构让每个部分都相对独立，你可以只读自己关心的那一块，而不必滚动全文。</p>
+        </div>
+
+        <!-- FAQ 摘要 + 再次访问提示 -->
+        <div class="faq-mini">
+            <h3>❓ 常见问题摘要 <span class="badge">持续更新</span></h3>
+            <div class="faq-item">
+                <div class="faq-q">这个页面主要用来做什么？</div>
+                <div class="faq-a">它是 <a href="https://home-ssl-ayx.com">ayx</a> 的介绍入口，以卡片和段落形式汇总了用途、适合人群和访问建议，方便新访客快速建立认知，也方便老访客回顾。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">内容会变吗？</div>
+                <div class="faq-a">会。卡片和链接段落会随着站点方向微调，但整体保持稳定。如果你隔一段时间再回来，可能会发现一些细节上的优化。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">怎么收藏这个页面？</div>
+                <div class="faq-a">在浏览器地址栏右侧或菜单中点击「添加书签」或「⭐」即可。你也可以直接把当前页面加入阅读列表。</div>
+            </div>
+        </div>
+
+        <!-- 一个小结 / 再次关注 -->
+        <hr>
+        <div style="background: white; border-radius: 20px; padding: 1.75rem; border: 1px solid #eef2f6; margin-top: 0.5rem;">
+            <p style="font-size: 1rem; color: #1f2937; margin-bottom: 0.25rem;">
+            <span style="font-weight: 600;">📎 持续关注的方式很简单：</span> 把 <a href="https://home-ssl-ayx.com">ayx</a> 放进书签文件夹，或者定期回来看一眼卡片摘要。页面本身保持轻量和直接，没有多余的注册或推送。
+            </p>
+            <p style="font-size: 0.95rem; color: #4b5563; margin-top: 0.5rem;">
+            如果你觉得卡片信息对你有帮助，也可以分享给有类似需求的朋友。再次感谢你的访问。
+            </p>
+        </div>
+
+        <div class="footer-note">
+            <span>信息卡片式介绍 · 基于持续关注角度整理</span>
+        </div>
+    </div>
+</body>
+</html>
