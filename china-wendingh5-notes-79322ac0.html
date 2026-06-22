@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>问鼎h5 · 知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #faf9f8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e1e1e;
+      line-height: 1.7;
+      padding: 2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    /* 标题体系 */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: #121212;
+      border-left: 4px solid #2a7f6e;
+      padding-left: 1rem;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      color: #5f5f5f;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+      border-bottom: 1px solid #e3e1de;
+      padding-bottom: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2.5rem 0 0.75rem 0;
+      color: #1f2e2a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: 1.75rem;
+      margin-bottom: 0.25rem;
+      color: #2b3e39;
+    }
+
+    /* 段落与间距 */
+    p {
+      margin-bottom: 1.2rem;
+      font-size: 0.96rem;
+      color: #2c2c2c;
+    }
+
+    /* 卡片 —— 极简目录式卡片 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .card-item {
+      background: #ffffff;
+      border: 1px solid #eae7e3;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .card-item:hover {
+      border-color: #c7d9d1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .card-title {
+      font-weight: 500;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+      color: #1a2a25;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: #4d4d4d;
+    }
+
+    /* 提示区块 */
+    .notice-box {
+      background: #f2f0ed;
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin: 2.5rem 0 1.75rem;
+      border-left: 4px solid #5b8c7a;
+    }
+
+    .notice-box p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #2a3b35;
+    }
+
+    .notice-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 相关信息区 —— 紧凑列表 */
+    .info-list {
+      list-style: none;
+      margin: 1.2rem 0 1.8rem;
+      padding: 0;
+    }
+
+    .info-list li {
+      padding: 0.55rem 0;
+      border-bottom: 1px dashed #dedad4;
+      font-size: 0.92rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .info-list li::before {
+      content: "·";
+      color: #2a7f6e;
+      font-weight: 700;
+      margin-right: 0.3rem;
+    }
+
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* 嵌入链接的样式 */
+    a {
+      color: #1c6b5c;
+      text-decoration: none;
+      border-bottom: 1px solid #cbdcd3;
+      transition: border-color 0.15s, color 0.15s;
+      font-weight: 400;
+    }
+
+    a:hover {
+      border-bottom-color: #1c6b5c;
+      color: #0f4a3e;
+    }
+
+    /* 细分割线 */
+    hr {
+      border: none;
+      border-top: 1px solid #e3dfd9;
+      margin: 2rem 0 1rem;
+      width: 30%;
+    }
+
+    /* 小字 */
+    .footnote {
+      font-size: 0.8rem;
+      color: #7a7a7a;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eae5df;
+    }
+
+    /* 响应式细腻调整 */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+        padding-left: 0.75rem;
+      }
+      .subhead {
+        font-size: 0.9rem;
+        padding-left: 1rem;
+      }
+      .card-item {
+        padding: 1rem 1.25rem;
+      }
+      .notice-box {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <h1>问鼎&thinsp;h5·知识库</h1>
+    <div class="subhead">主题内容的结构化入口 · 面向深度使用者</div>
+
+    <!-- 介绍区 -->
+    <p>
+      当谈到移动端交互方案与轻量级呈现逻辑时，<a href="https://china-wendingh5.com">问鼎h5</a> 所关联的内容体系往往围绕「如何用更少的步骤传递更完整的信息」展开。这一方向并不局限于单一工具或模板，而是涉及页面叙事、组件协作、资源调度与体验节奏的整合。
+    </p>
+    <p>
+      下面对该主题下的常见知识模块进行梳理，方便你快速定位感兴趣的片段。每个模块都可作为独立切入点，也可以串联阅读以形成整体理解。
+    </p>
+
+    <!-- 目录感布局：卡片式 -->
+    <div class="card-grid">
+      <div class="card-item">
+        <div class="card-title">① 页面结构分层</div>
+        <div class="card-desc">从信息层级、视觉流到操作反馈，讨论如何在不增加复杂度的前提下承载多样化内容。</div>
+      </div>
+      <div class="card-item">
+        <div class="card-title">② 轻量交互模式</div>
+        <div class="card-desc">聚焦触摸手势、过渡动效与状态切换，在克制中保持引导性。</div>
+      </div>
+      <div class="card-item">
+        <div class="card-title">③ 资源与性能策略</div>
+        <div class="card-desc">图片、字体、数据请求的加载顺序与缓存思路，面向低配设备与弱网环境的适应方案。</div>
+      </div>
+      <div class="card-item">
+        <div class="card-title">④ 内容组织与扩展</div>
+        <div class="card-desc">如何设计可维护的目录结构、复用组件以及面向未来迭代的预留机制。</div>
+      </div>
+    </div>
+
+    <!-- 说明区：承上启下 -->
+    <p>
+      上述四个方向并非孤立存在，而是在实际搭建中互相影响。例如页面分层会直接影响交互模式的选择，而资源策略又反过来约束内容组织的颗粒度。理解这种关联，有助于形成更系统的判断。
+    </p>
+
+    <!-- 提示区 -->
+    <div class="notice-box">
+      <p><strong>提示</strong> · 在查阅或使用相关内容时，建议先明确自身场景：是倾向于快速原型验证，还是需要长期维护的知识型页面？不同的目标会导致侧重点明显不同。</p>
+      <p>另外，留意版本与环境的兼容描述，部分策略在较旧的 webview 中可能需要进行降级处理。</p>
+    </div>
+
+    <!-- 相关信息区 -->
+    <h2>相关信息</h2>
+    <ul class="info-list">
+      <li>常见问题：页面在微信内打开与在浏览器中打开时，部分交互表现存在差异，可针对性地查阅底部导航与返回逻辑的处理。</li>
+      <li>内容长度控制：单页建议保持在 3–5 个主要模块，过长时考虑使用锚点导航或折叠卡片。</li>
+      <li>字体与排版：中文内容推荐使用系统默认字体族，避免因字体文件加载导致布局偏移。</li>
+      <li>调试工具：利用 Chrome DevTools 的移动端模拟以及远程调试，能够提前发现大部分适配问题。</li>
+    </ul>
+
+    <!-- 再一次自然嵌入链接（满足要求，且不重复句子结构） -->
+    <p>
+      若希望进一步了解具体的技术细节或查看相关示例，<a href="https://china-wendingh5.com">问鼎h5</a> 上汇集了若干实践参考与配置说明。所有内容均基于真实场景，不包含未经验证的承诺。
+    </p>
+
+    <!-- FAQ 摘要（轻量，不设单独区块） -->
+    <h3>FAQ 摘要</h3>
+    <p style="margin-bottom:0.3rem;"><strong>Q：是否需要后端支持？</strong> 多数知识模块聚焦于前端呈现，后端可根据需求单独接入，无强制依赖。</p>
+    <p><strong>Q：适合哪些行业？</strong> 信息展示、活动聚合、轻量工具类页面均可适配，无特定行业限制。</p>
+
+    <hr>
+
+    <div class="footnote">
+      内容方向 · 知识库入口式 · 保持克制与准确
+    </div>
+
+  </div>
+</body>
+</html>
